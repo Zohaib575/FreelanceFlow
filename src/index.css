@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system with new color palettes */
+@layer base {
+  :root {
+    --background: 220 20% 98%; /* professional light gray-blue in HSL, e.g., #F7F8FA */
+    --foreground: 0 0% 33%; /* soft-charcoal in HSL */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 33%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 33%;
+
+    --primary: 18 72% 46%; /* terracotta in HSL */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 134 22% 74%; /* sage-green in HSL */
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 244 237 232; /* pale-sand in HSL */
+    --muted-foreground: 0 0% 33%;
+
+    --accent: 270 100% 67%; /* electric-purple in HSL */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 23 14% 74%; /* clay-grey in HSL */
+    --input: 23 14% 74%;
+    --ring: 18 72% 46%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 201 23% 87%; /* mist-blue in HSL */
+    --sidebar-foreground: 0 0% 33%;
+    --sidebar-primary: 18 72% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 244 237 232;
+    --sidebar-accent-foreground: 0 0% 33%;
+    --sidebar-border: 23 14% 74%;
+    --sidebar-ring: 18 72% 46%;
+  }
+
+  .dark {
+    --background: 27 11% 7%; /* deep-navy variant */
+    --foreground: 0 0% 98%;
+
+    --card: 27 11% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 27 11% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 18 72% 46%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 270 100% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 18 72% 46%;
+
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 18 72% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 18 72% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-space-grotesk;
+  }
+}
+
+/* Custom utility classes for organic shapes and animations */
+@layer utilities {
+  .text-gradient-neo {
+    @apply bg-gradient-to-r from-electric-purple to-bubblegum-pink bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-earthy {
+    @apply bg-gradient-to-r from-terracotta to-olive bg-clip-text text-transparent;
+  }
+  
+  .shadow-organic {
+    box-shadow: 0 25px 50px -12px rgba(210, 105, 30, 0.25), 0 0 0 1px rgba(210, 105, 30, 0.05);
+  }
+  
+  .shadow-neo {
+    box-shadow: 0 25px 50px -12px rgba(162, 89, 255, 0.25), 0 0 0 1px rgba(162, 89, 255, 0.05);
+  }
+
+  .backdrop-blur-organic {
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .scale-102 {
+    transform: scale(1.02);
+  }
+
+  /* Card flip animation */
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  /* Infinite scroll animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  /* Loading animation */
+  @keyframes loading {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  /* Enhanced shadow for elevated buttons */
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-warm-sand;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-terracotta rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-olive;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-terracotta/20 text-soft-charcoal;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-terracotta/50 focus:ring-offset-2 focus:ring-offset-warm-sand;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
